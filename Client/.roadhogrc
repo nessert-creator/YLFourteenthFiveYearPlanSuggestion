@@ -1,0 +1,45 @@
+{
+  "entry": "src/index.js",
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    }
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:6634/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    },
+    "/signalr": {
+      "target": "http://localhost:6634/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/signalr" : "/signalr" }
+    },
+    "/UE": {
+      "target": "http://localhost:6634/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/UE" : "/UE" }
+    },
+    "/Common": {
+      "target": "http://localhost:6634/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/Common" : "/Common" }
+    },
+    "/SyncStorage": {
+      "target": "http://localhost:6634/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/SyncStorage" : "/SyncStorage" }
+    }
+  }
+}

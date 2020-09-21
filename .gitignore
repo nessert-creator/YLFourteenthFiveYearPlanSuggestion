@@ -1,0 +1,13 @@
+/Client/node_modules
+/Server/packages
+/Server/QC.MF.Core/bin/Debug
+/Server/QC.MF.Core/obj/Debug
+/Server/QC.MF.EntityFramework/bin/Debug
+/Server/QC.MF.EntityFramework/obj/Debug
+/Server/QC.MF.Web/bin
+/Server/QC.MF.WebApi/bin/Debug
+/Server/Tools/QC.MF.Migrator/bin/Debug
+/Server/Tools/QC.MF.Migrator/obj/Debug
+/Server/QC.MF.WebApi/obj/Debug
+/Server/QC.MF.Web/obj/Debug
+/Server/QC.MF.Application/bin/Debug
