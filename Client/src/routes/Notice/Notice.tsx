@@ -6,7 +6,7 @@ import 'braft-editor/dist/index.css';
 const create = Form.create;
 import moment from 'moment';
 
-function Notice({ form, record, loading}) {
+function Notice({ form, loading,dispatch, notice}) {
 	const { getFieldDecorator } = form;
 	const formCol = {
 		labelCol: { span: 6 },
@@ -23,7 +23,29 @@ function Notice({ form, record, loading}) {
     const controls = [ 'headings', 'bold', 'list-ul', 'list-ol', 'blockquote', 'media', 'separator','clear' ]
 
 	function onSubmit(){
-
+    form.validateFields((err, values) => {
+      if (!err) {
+        console.log(values)
+        let data = {
+          author:values.author,
+          name:values.name,
+          content:values.content.toHTML(),
+          pubdate:values.pubdate
+        }
+        dispatch({
+          type:"notice/setState",
+          payload:{
+            loading:true
+          }
+        })
+        dispatch({
+          type:"notice/editNotice",
+          payload:{
+            ...data
+          }
+        })
+      }
+    });
 	}
 
 	return (
@@ -36,7 +58,7 @@ function Notice({ form, record, loading}) {
                     message: '请输入公告标题',
                   },
                 ],
-                initialValue: record && record.name,
+                initialValue: notice && notice.name,
               })(<Input maxLength={32} type="text" placeholder="请输入公告标题" />)}
             </Form.Item> 
 			<Form.Item {...formCol} label="公告发布者" style={{display:"inline-block",width:"33%"}}>
@@ -47,7 +69,7 @@ function Notice({ form, record, loading}) {
                     message: '请输入公告发布者',
                   },
                 ],
-                initialValue: record && record.author,
+                initialValue: notice && notice.author,
               })(<Input maxLength={32} type="text" placeholder="请输入公告发布者" />)}
             </Form.Item>
 			<Form.Item {...formCol} label="公告发布日期" style={{display:"inline-block",width:"33%"}}>
@@ -58,12 +80,12 @@ function Notice({ form, record, loading}) {
                     message: '请输入公告发布日期',
                   },
                 ],
-                initialValue: record && record.pubdate,
+                initialValue: notice && moment(notice.pubdate, 'YYYY-MM-DD'),
               })(<DatePicker style={{width:"100%"}}/>)}
             </Form.Item>
             <Form.Item label="公告内容">
               {getFieldDecorator('content', {
-                initialValue: BraftEditor.createEditorState((record &&  record.content)?record.content: ""),
+                initialValue: notice && notice.content && BraftEditor.createEditorState(notice.content),
               })(<BraftEditor
                 style={{border:'1px solid #d1d1d1', borderRadius:5}}
                 // controls={controls}
@@ -85,5 +107,6 @@ function Notice({ form, record, loading}) {
 
 export default create()(connect((state) => {
 	return {
+    ...state.notice
 	};
 })(Notice));

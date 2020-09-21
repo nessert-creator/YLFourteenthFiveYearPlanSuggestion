@@ -49,6 +49,42 @@ namespace QC.MF.Menus
                             )
                         .AddItem(
                             new MenuItemDefinition(
+                                "notice",
+                                L("活动公告"),
+                                url: "/notice",
+                                icon: "",
+                                requiredPermissionName: PermissionNames.Pages
+                            )
+                        )
+                        .AddItem(
+                            new MenuItemDefinition(
+                                "topic",
+                                L("留言主题"),
+                                url: "/topic",
+                                icon: "",
+                                requiredPermissionName: PermissionNames.Pages
+                            )
+                        )
+                        .AddItem(
+                            new MenuItemDefinition(
+                                "messager",
+                                L("留言者"),
+                                url: "/messager",
+                                icon: "",
+                                requiredPermissionName: PermissionNames.Pages
+                            )
+                        )
+                        .AddItem(
+                            new MenuItemDefinition(
+                                "message",
+                                L("留言内容"),
+                                url: "/message",
+                                icon: "",
+                                requiredPermissionName: PermissionNames.Pages
+                            )
+                        )
+                        .AddItem(
+                            new MenuItemDefinition(
                                 "auditLog",
                                 L("审计日志"),
                                 url: "/auditLog",

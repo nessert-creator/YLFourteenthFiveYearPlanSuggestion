@@ -201,7 +201,7 @@ namespace QC.MF.Menus
         [AbpAuthorize]
         public async Task<IList<UserMenuItem>> GetUserMenus()
         {
-            var menu = await _userNavigationManager.GetMenuAsync(DBNavigationProvider.MenuGroupName, AbpSession.ToUserIdentifier());
+            var menu = await _userNavigationManager.GetMenuAsync(CodeNavigationProvider.MenuGroupName, AbpSession.ToUserIdentifier());
             return menu.Items;
         }
 

@@ -26,9 +26,10 @@ namespace QC.MF.Notices.Dto
         /// 公告发布日期
         /// </summary>
         public DateTime Pubdate { get; set; }
+
         /// <summary>
         /// 是否启用
         /// </summary>
-        public bool IsUsing { get; set; }
+        public bool IsUsing { get; set; } = true;
     }
 }
