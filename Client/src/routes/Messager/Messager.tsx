@@ -39,20 +39,8 @@ function Demo({ form, record }) {
 	const filters = [
 		{
 			name: 'name',
-			displayName: '名称',
+			displayName: '姓名',
 			option: 'like'
-		},
-		{
-			name: 'creationTime',
-			displayName: '添加时间',
-			type: 'datetime',
-			option: '>='
-		},
-		{
-			name: 'creationTime',
-			displayName: '',
-			type: 'datetime',
-			option: '<'
 		}
 	];
 

@@ -4,8 +4,34 @@ const util = require('../../utils/util.js')
 Page({
   data: {
   },
-  onLoad: function () {
-    
+  //生命周期
+  onLoad: function (options) {
+    const page = this;
+    wx.request({
+      url: consts.remoteUrl + '/api/services/app/topic/GetAll',
+      data:{
+        maxResultCount: 999,
+        skipCount: 0
+      },
+      method: "POST",
+      success: function (res) {
+        if (res.statusCode == 200) {
+          page.setData({
+            topics:res.data.result.items,
+            showLoading:false
+          })
+        }else{
+          wx.showToast({
+            title:  res.data.error.message,
+            icon: 'none',
+            duration: 2000
+          });
+          page.setData({
+            showLoading:false
+          })
+        }
+      }
+    })
   },
   commitMessage:function(){
     const page = this;

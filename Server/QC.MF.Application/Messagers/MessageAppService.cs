@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.UI;
 using Castle.Core.Internal;
 
 namespace QC.MF.Messagers
 {
+    [AbpAuthorize()]
     public class MessageAppService : AsyncMFCrudAppService<Message.Message, GetListMessageDto, PagedSortedAndFilteredInputDto, CreateMessageDto, UpdateMessageDto>, IMessageAppService
     {
         private IRepository<Messager.Messager> _messagerRepository;
@@ -25,7 +27,7 @@ namespace QC.MF.Messagers
             _messagerRepository = messagerRepository;
         }
 
-
+        [AbpAllowAnonymous]
         public async Task CommitMessage(CommitMessageInput input)
         {
             if (string.IsNullOrWhiteSpace(input.Name))

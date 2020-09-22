@@ -8,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.AutoMapper;
 
 namespace QC.MF.Notices
 {
+    [AbpAuthorize()]
     public class NoticeAppService : AsyncMFCrudAppService<Notice.Notice, GetListNoticeDto, PagedSortedAndFilteredInputDto, CreateNoticeDto, UpdateNoticeDto>, INoticeAppService
     {
         public NoticeAppService(IRepository<Notice.Notice, int> repository) : base(repository)
@@ -29,7 +31,7 @@ namespace QC.MF.Notices
 
             return await base.Create(input);
         }
-
+        [AbpAllowAnonymous]
         public async Task<GetNoticeDto> GetUsingNotice()
         {
             var entity = await Repository.FirstOrDefaultAsync(t => t.IsUsing);
