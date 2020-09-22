@@ -1,0 +1,10 @@
+<view class="container">
+	<view class="title">{{notice.name}}</view>
+	<view class="content">
+		<rich-text nodes="{{notice.content}}"></rich-text>
+	</view>
+	<view class="author">{{notice.author}}</view>
+	<view class="pubdate">{{notice.pubdate}}</view>
+
+	<button class="submit">已阅读</button>
+</view>

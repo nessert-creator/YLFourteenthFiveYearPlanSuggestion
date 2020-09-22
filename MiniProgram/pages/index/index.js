@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-
+    notice:{}
   },
   //事件处理函数
   bindViewTap: function() {
@@ -17,8 +17,7 @@ Page({
     const page = this;
     wx.request({
       url: consts.remoteUrl + '/api/services/app/notice/GetUsingNotice',
-      data:{
-      },
+      data:{},
       method: "POST",
       success: function (res) {
         if (res.statusCode == 200) {
